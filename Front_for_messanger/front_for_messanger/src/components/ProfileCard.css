@@ -1,0 +1,75 @@
+.user-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Аватар и информация о пользователе */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Карточка профиля */
+.profile-card-container {
+    position: absolute;
+    top: 60px; /* Высота хедера + немного отступа */
+    right: 0;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 190px; /* Ширина карточки */
+    display: none; /* По умолчанию скрыто */
+    z-index: 10;
+    text-align: left; /* Выравнивание текста по левому краю */
+    margin-right: 30px;
+}
+
+/* Стиль для карточки при наведении */
+.profile-card-container.visible {
+    display: block; /* Показываем карточку при наведении */
+}
+
+/* Стиль аватара в карточке */
+.profile-card-avatar {
+    display: block;
+    margin: 0 auto 15px; /* Центрируем аватар и добавляем отступ снизу */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover; /* Для правильного отображения изображения */
+}
+
+/* Имя пользователя в центре */
+.profile-card-username {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Информация о пользователе */
+.profile-card-info {
+    line-height: 0.4;
+    color: #333;
+}
+
+/* Кнопка выхода */
+.profile-card-logout-btn {
+    width: 60%;
+    padding: 10px;
+    background-color: rgba(79, 156, 232, 0.7019607843);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+}
+
+.profile-card-logout-btn:hover {
+    background-color: rgba(79, 156, 232, 0.95);
+}

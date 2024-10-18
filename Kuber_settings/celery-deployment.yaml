@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: celery-worker
+  template:
+    metadata:
+      labels:
+        app: celery-worker
+    spec:
+      containers:
+      - name: celery-worker
+        image: pet_app-celery_worker:latest
+        imagePullPolicy: Never
+        command: ["celery", "-A", "src.tasks", "worker", "--loglevel=info", "--pool=solo"]
+        env:
+        - name: DB_HOST
+          value: "postgres"
+        - name: DB_PORT
+          value: "5432"
+        - name: REDIS_HOST
+          value: "redis"
+        - name: REDIS_PORT
+          value: "5370"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: celery-beat
+  template:
+    metadata:
+      labels:
+        app: celery-beat
+    spec:
+      containers:
+      - name: celery-beat
+        image: pet_app-celery_beat:latest
+        imagePullPolicy: Never
+        command: ["celery", "-A", "src.tasks", "beat", "--loglevel=info"]
+        env:
+          - name: DB_HOST
+            value: "postgres"
+          - name: DB_PORT
+            value: "5432"
+          - name: REDIS_HOST
+            value: "redis"
+          - name: REDIS_PORT
+            value: "5370"

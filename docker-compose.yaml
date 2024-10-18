@@ -1,0 +1,85 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    container_name: message_db
+    command: -p 8888
+    expose:
+      - 8888
+    env_file:
+      - .env
+
+  redis:
+    image: redis:7
+    container_name: redis_mesanger
+    command: --port 5370
+    expose:
+      - 5370
+    env_file:
+      - .env
+
+  app:
+    build:
+      context: .
+    env_file:
+      - .env
+    container_name: fastapi_app
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+      - redis
+
+  celery_worker:
+    build:
+      context: .
+    env_file:
+      - .env
+    container_name: celery_messanger
+    command: celery -A src.tasks worker --loglevel=info --pool=solo
+    depends_on:
+      - redis
+      - db
+
+  celery_beat:
+      build:
+        context: .
+      env_file:
+        - .env
+      container_name: celery_beat_messanger
+      command: celery -A src.tasks beat --loglevel=info
+      depends_on:
+        - redis
+        - db
+
+  flower:
+      build:
+        context: .
+      env_file:
+        - .env
+      container_name: flower_messanger
+      command: celery -A src.tasks flower
+      ports:
+        - 5555:5555
+      depends_on:
+        - redis
+        - celery_worker
+        - db
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app
+
+  frontend:
+    build:
+      context: ./Front_for_messanger/front_for_messanger
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - app
+

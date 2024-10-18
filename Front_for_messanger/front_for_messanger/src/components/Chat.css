@@ -1,0 +1,247 @@
+.chat-container {
+    position: relative;
+    max-width: 100%;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  .chat-header,
+.chat-input {
+    background-color: #f8f9fa; /* Цвет фона для плашек */
+    border-radius: 10px;
+    padding: 1px;
+    margin: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Фиксируем панели */
+    z-index: 1; /* Обеспечиваем, чтобы панели были выше остальных элементов */
+}
+.file-info-show {
+    position: sticky; /* Фиксируем панели */
+    z-index: 1;
+    bottom: 14%; /* Фиксация нижней панели */
+}
+
+.chat-header {
+    top: 100px; /* Фиксация верхней панели */
+}
+
+.chat-input {
+    bottom: 5%; /* Фиксация нижней панели */
+    display: flex;
+    align-items: center;
+}
+  .chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .message-block {
+    justify-content: center;
+    margin: 10px 0;
+    display: flex;
+    width: 100%;
+  }
+  
+  .message-date {
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    color: #999;
+  }
+  
+  .sent {
+    justify-content: flex-end;
+     /* Выравнивание по правому краю */
+  }
+  
+  .received {
+    justify-content: flex-start;
+     /* Выравнивание по левому краю */
+  }
+  
+  .sent .message-content {
+    background-color: #dcf8c6;
+    color: black;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  
+  .received .message-content {
+    background-color: #ffffff;
+    color: black;
+    align-self: flex-start;
+    margin-right: auto;
+  }
+  
+  .message-content {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+  }
+  
+
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin-right: 10px;
+  }
+  
+  .chat-input button:hover {
+    background-color: rgba(79, 156, 232, 0.999);
+  }
+
+  .scroll-button {
+    position: fixed;
+    bottom: 14%;
+    left: 50%; /* Горизонтальное позиционирование по центру */
+    transform: translateX(-50%); /* Смещаем кнопку на половину её ширины, чтобы была по центру */
+    background-color: rgba(79, 156, 232, 0.7019607843);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    z-index: 1000;
+}
+
+
+.scroll-button:hover {
+    background-color: rgba(79, 156, 232, 0.9);
+}
+
+.scroll-button:focus {
+    outline: none;
+}
+
+@media (max-width: 768px) {
+  .chat-messages {
+    width: 100%; /* Сообщения занимают всю ширину экрана */
+  }
+
+  .chat-input {
+    width: 100%;
+  }
+}
+
+/* Широкие экраны */
+@media (min-width: 769px) {
+  .chat-messages {
+    margin: 0 auto; /* Центрируем содержимое */
+  }
+
+  .chat-input {
+    width: 100%;
+    margin: 0 auto; /* Центрируем содержимое */
+  }
+  .chat-container {
+    width: 50%;
+  }
+}
+
+.plusButton {
+  /* Config start */
+  --plus_sideLength: 2.2rem;
+  --plus_topRightTriangleSideLength: 0.9rem;
+  /* Config end */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  width: var(--plus_sideLength);
+  height: var(--plus_sideLength);
+  background-color: #000000;
+  overflow: hidden;
+  border-radius: 20%;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.plusButton::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+
+.plusButton:hover {
+  cursor: pointer;
+}
+
+.plusButton:hover::before {
+  --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton:focus-visible::before {
+  --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton>.plusIcon {
+  fill: white;
+  width: calc(var(--plus_sideLength) * 0.7);
+  height: calc(var(--plus_sideLength) * 0.7);
+  z-index: 1;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+
+.plusButton:hover>.plusIcon {
+  fill: black;
+  transform: rotate(180deg);
+}
+
+.plusButton:focus-visible>.plusIcon {
+  fill: black;
+  transform: rotate(180deg);
+}
+.file-download {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc; /* Цвет рамки */
+  border-radius: 5px; /* Закругленные углы */
+  padding: 8px; /* Отступы внутри рамки */
+  margin: 5px 0; /* Отступы между файлами */
+  background-color: #f9f9f9; /* Цвет фона */
+  transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.file-download:hover {
+  background-color: #f0f0f0; /* Цвет фона при наведении */
+}
+
+.file-name {
+  flex-grow: 1; /* Занимает всё доступное пространство */
+  margin-right: 8px; /* Отступ между текстом и иконкой */
+  white-space: nowrap; /* Не переносить текст на новую строку */
+  overflow: hidden; /* Обрезать текст, если он слишком длинный */
+  text-overflow: ellipsis; /* Добавить многоточие, если текст длиннее */
+}
+
+.file-icon {
+  width: 30px;
+  height: 30px;
+}
