@@ -16,42 +16,40 @@
 /* Карточка профиля */
 .profile-card-container {
     position: absolute;
-    top: 60px; /* Высота хедера + немного отступа */
+    top: 60px;
     right: 0;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    width: 190px; /* Ширина карточки */
-    display: none; /* По умолчанию скрыто */
+    width: 190px;
+    display: none;
     z-index: 10;
-    text-align: left; /* Выравнивание текста по левому краю */
+    text-align: left;
     margin-right: 30px;
 }
 
 /* Стиль для карточки при наведении */
 .profile-card-container.visible {
-    display: block; /* Показываем карточку при наведении */
+    display: block;
 }
 
 /* Стиль аватара в карточке */
 .profile-card-avatar {
     display: block;
-    margin: 0 auto 15px; /* Центрируем аватар и добавляем отступ снизу */
+    margin: 0 auto 15px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    object-fit: cover; /* Для правильного отображения изображения */
+    object-fit: cover;
 }
 
-/* Имя пользователя в центре */
 .profile-card-username {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
 }
 
-/* Информация о пользователе */
 .profile-card-info {
     line-height: 0.4;
     color: #333;

@@ -17,8 +17,8 @@ const Header = ({ isLoggedIn, userInfo, setIsLoggedIn, setUserInfo }) => {
     const profileCardRef = useRef(null); // Создаем ref для карточки
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
-    
+
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (profileCardRef.current && !profileCardRef.current.contains(event.target)) {
@@ -82,7 +82,7 @@ const Header = ({ isLoggedIn, userInfo, setIsLoggedIn, setUserInfo }) => {
 
         try {
             // Логин пользователя
-            await axios.post('http://localhost:8080/auth/jwt/login', 
+            await axios.post('http://localhost:8080/auth/jwt/login',
                 `username=${email}&password=${password}`, {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true // Указываем отправку куки
@@ -91,7 +91,7 @@ const Header = ({ isLoggedIn, userInfo, setIsLoggedIn, setUserInfo }) => {
             // После успешного логина получаем информацию о пользователе
             const userResponse = await axios.get('http://localhost:8080/protected-route', {
                 withCredentials: true // Проверка состояния сессии
-                
+
             });
             // Сохраняем информацию о пользователе
             if (userResponse.status === 200) {
@@ -114,7 +114,7 @@ const Header = ({ isLoggedIn, userInfo, setIsLoggedIn, setUserInfo }) => {
         const username = e.target.username.value;
 
         try {
-            await axios.post('http://localhost:8080/auth/register', 
+            await axios.post('http://localhost:8080/auth/register',
                 { email, password, username }, {
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -130,7 +130,7 @@ const Header = ({ isLoggedIn, userInfo, setIsLoggedIn, setUserInfo }) => {
     const handleForgotPasswordSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:8080/forgot-password', 
+            await axios.post('http://localhost:8080/forgot-password',
                 { email: forgotPasswordEmail }, {
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -158,20 +158,20 @@ const Header = ({ isLoggedIn, userInfo, setIsLoggedIn, setUserInfo }) => {
             </div>
             {isLoggedIn && (
                 <div className="nav-buttons">
-                    <button 
-                        className={`nav-btn ${activeButton === 'Friends' ? 'active' : ''}`} 
+                    <button
+                        className={`nav-btn ${activeButton === 'Friends' ? 'active' : ''}`}
                         onClick={() => handleButtonClick('Friends')}
                     >
                         Друзья
                     </button>
-                    <button 
-                        className={`nav-btn ${activeButton === 'Chats' ? 'active' : ''}`} 
+                    <button
+                        className={`nav-btn ${activeButton === 'Chats' ? 'active' : ''}`}
                         onClick={() => handleButtonClick('Chats')}
                     >
                         Чаты
                     </button>
-                    <button 
-                        className={`nav-btn ${activeButton === 'Profile' ? 'active' : ''}`} 
+                    <button
+                        className={`nav-btn ${activeButton === 'Profile' ? 'active' : ''}`}
                         onClick={() => handleButtonClick('Profile')}
                     >
                         Профиль
@@ -179,64 +179,64 @@ const Header = ({ isLoggedIn, userInfo, setIsLoggedIn, setUserInfo }) => {
                 </div>
             )}
             <div className="user-area">
-      {isLoggedIn && userInfo ? (
-        <div className="user-info" onClick={() => setShowUserMenu(!showUserMenu)}>
-          <img 
-            src={userInfo.pic_path ? `http://localhost:8080/${userInfo.pic_path}` : 'http://localhost:8080/static/avatars/default-image.png'}
-            alt="avatar" 
-            className="avatar" 
-          />
-          <span className="username">{userInfo.username}</span>
+                {isLoggedIn && userInfo ? (
+                    <div className="user-info" onClick={() => setShowUserMenu(!showUserMenu)}>
+                        <img
+                            src={userInfo.pic_path ? `http://localhost:8080/${userInfo.pic_path}` : 'http://localhost:8080/static/avatars/default-image.png'}
+                            alt="avatar"
+                            className="avatar"
+                        />
+                        <span className="username">{userInfo.username}</span>
 
-          <div className={`profile-card-container ${showUserMenu ? 'visible' : ''}`}onMouseEnter={() => setShowUserMenu(true)} 
-      onMouseLeave={() => setShowUserMenu(false)}>
-            <ProfileCard
-              avatar={userInfo.pic_path ? `http://localhost:8080/${userInfo.pic_path}` : 'http://localhost:8080/static/avatars/default-image.png'}
-              username={userInfo.username}
-              firstName={userInfo.first_name}
-              middleName={userInfo.sec_name}
-              lastName={userInfo.last_name}
-              onLogout={handleLogout}
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="auth-buttons">
-          <button className="login-btn" onClick={handleLoginClick}>Войти</button>
-          {showLoginForm && (
-            <form className="login-form" onSubmit={handleLoginSubmit}>
-              <input type="email" name="email" placeholder="Email" required />
-              <input type="password" name="password" placeholder="Пароль" required />
-              <button type="submit" className="submit-btn">Войти</button>
-              <p>Ещё не зарегистрированы? <span className="register-link" onClick={handleRegisterClick}>Зарегистрироваться</span></p>
-              <span className="register-link" onClick={handleForgotPasswordClick}>Забыли пароль?</span>
-            </form>
-          )}
-          {showRegisterForm && (
-            <form className="register-form" onSubmit={handleRegisterSubmit}>
-              <input type="text" name="username" placeholder="Имя пользователя" required />
-              <input type="email" name="email" placeholder="Email" required />
-              <input type="password" name="password" placeholder="Пароль" required />
-              <button type="submit" className="submit-btn">Зарегистрироваться</button>
-              <p>Уже есть аккаунт? <span className="login-link" onClick={handleLoginClick}>Войти</span></p>
-            </form>
-          )}
-          {showForgotPasswordForm && (
+                        <div className={`profile-card-container ${showUserMenu ? 'visible' : ''}`} onMouseEnter={() => setShowUserMenu(true)}
+                            onMouseLeave={() => setShowUserMenu(false)}>
+                            <ProfileCard
+                                avatar={userInfo.pic_path ? `http://localhost:8080/${userInfo.pic_path}` : 'http://localhost:8080/static/avatars/default-image.png'}
+                                username={userInfo.username}
+                                firstName={userInfo.first_name}
+                                middleName={userInfo.sec_name}
+                                lastName={userInfo.last_name}
+                                onLogout={handleLogout}
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <div className="auth-buttons">
+                        <button className="login-btn" onClick={handleLoginClick}>Войти</button>
+                        {showLoginForm && (
+                            <form className="login-form" onSubmit={handleLoginSubmit}>
+                                <input type="email" name="email" placeholder="Email" required />
+                                <input type="password" name="password" placeholder="Пароль" required />
+                                <button type="submit" className="submit-btn">Войти</button>
+                                <p>Ещё не зарегистрированы? <span className="register-link" onClick={handleRegisterClick}>Зарегистрироваться</span></p>
+                                <span className="register-link" onClick={handleForgotPasswordClick}>Забыли пароль?</span>
+                            </form>
+                        )}
+                        {showRegisterForm && (
+                            <form className="register-form" onSubmit={handleRegisterSubmit}>
+                                <input type="text" name="username" placeholder="Имя пользователя" required />
+                                <input type="email" name="email" placeholder="Email" required />
+                                <input type="password" name="password" placeholder="Пароль" required />
+                                <button type="submit" className="submit-btn">Зарегистрироваться</button>
+                                <p>Уже есть аккаунт? <span className="login-link" onClick={handleLoginClick}>Войти</span></p>
+                            </form>
+                        )}
+                        {showForgotPasswordForm && (
                             <form className="password-change-form" onSubmit={handleForgotPasswordSubmit}>
-                                <input 
-                                    type="email" 
-                                    value={forgotPasswordEmail} 
-                                    onChange={(e) => setForgotPasswordEmail(e.target.value)} 
-                                    placeholder="Введите ваш email" 
-                                    required 
+                                <input
+                                    type="email"
+                                    value={forgotPasswordEmail}
+                                    onChange={(e) => setForgotPasswordEmail(e.target.value)}
+                                    placeholder="Введите ваш email"
+                                    required
                                 />
                                 <button type="submit" className="submit-btn">Отправить</button>
                                 {forgotPasswordMessage && <p className="password-change-message">{forgotPasswordMessage}</p>}
                             </form>
                         )}
-        </div>
-      )}
-    </div>
+                    </div>
+                )}
+            </div>
         </header>
     );
 };

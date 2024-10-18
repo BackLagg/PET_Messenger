@@ -19,7 +19,7 @@ def generate_verification_code(length: int = 6) -> str:
     return ''.join(random.choices(string.digits, k=length))
 
 async def save_verification_code(email: str, code: str):
-    await redis.set(email, code, ex=240)  # Сохраняем код с истечением через 10 минут
+    await redis.set(email, code, ex=240)  # Сохраняем код с истечением через 6 минут
 
 async def verify_verification_code(email: str, code: str) -> bool:
     stored_code = await redis.get(email)

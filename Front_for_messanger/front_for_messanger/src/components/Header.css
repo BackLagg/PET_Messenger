@@ -4,11 +4,11 @@
     align-items: center;
     padding: 10px 20px;
     background-color: rgb(112, 176, 235);
-    position: fixed; /* Фиксируем хедер */
-    top: 0; /* Хедер будет находиться вверху экрана */
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%; /* Хедер занимает всю ширину экрана */
-    z-index: 1000; /* Обеспечиваем, что хедер будет над другими элементами */
+    width: 100%;
+    z-index: 1000;
     height: 60px;
 }
 
@@ -26,7 +26,8 @@
     position: relative;
 }
 
-.login-btn, .logout-btn {
+.login-btn,
+.logout-btn {
     padding: 10px 20px;
     background-color: white;
     border: none;
@@ -35,7 +36,8 @@
     margin-right: 40px;
 }
 
-.login-form, .register-form {
+.login-form,
+.register-form {
     position: absolute;
     top: 50px;
     right: 0;
@@ -49,7 +51,8 @@
     margin-right: 30px;
 }
 
-.login-form input, .register-form input {
+.login-form input,
+.register-form input {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -69,12 +72,14 @@
     background-color: rgba(79, 156, 232, 0.95);
 }
 
-.register-link, .login-link {
+.register-link,
+.login-link {
     color: rgba(79, 156, 232, 0.7019607843);
     cursor: pointer;
 }
 
-.register-link:hover, .login-link:hover {
+.register-link:hover,
+.login-link:hover {
     color: rgba(79, 156, 232, 0.95);
 }
 
@@ -90,6 +95,7 @@
     margin-right: 40px;
     cursor: pointer;
 }
+
 @media (max-width: 768px) {
     .username {
         display: none;
@@ -105,25 +111,25 @@
 .nav-buttons {
     display: flex;
     justify-content: center;
-    position: relative; /* Позволяет кнопкам двигаться внутри родителя */
-    transition: all 0.8s ease; /* Плавная анимация */
-    margin-bottom: -35px; /* Отступ сверху для кнопок */
+    position: relative;
+    transition: all 0.8s ease;
+    margin-bottom: -35px;
 }
 
 .nav-btn {
     padding: 10px 25px;
-    background-color: #f0f0f0; /* Начальный фон */
+    background-color: #f0f0f0;
     border: none;
-    border-radius: 20px; /* Скругленные углы */
-    margin: 0 15px; /* Отступы между кнопками */
+    border-radius: 20px;
+    margin: 0 15px;
     cursor: pointer;
-    transition: transform 0.6s ease; /* Плавная анимация для перемещения */
+    transition: transform 0.6s ease;
     position: relative;
     overflow: hidden;
 }
 
 .nav-btn.active {
-    transform: translateY(15px); /* Положение при активации */
+    transform: translateY(15px);
     z-index: 1;
     border: 2px solid rgba(79, 156, 232, 0.7019607843);
 }
@@ -140,7 +146,7 @@
     display: flex;
     flex-direction: column;
     margin-right: 30px;
-    z-index: 1001; /* Убедитесь, что форма над другими элементами */
+    z-index: 1001;
 }
 
 .password-change-form input {
@@ -160,13 +166,13 @@
 }
 
 .password-change-message {
-    color: green; /* Цвет сообщения об успехе */
+    color: green;
     margin-top: 10px;
     text-align: center;
 }
 
 .password-change-error {
-    color: red; /* Цвет сообщения об ошибке */
+    color: red;
     margin-top: 10px;
     text-align: center;
 }

@@ -1,103 +1,110 @@
 .profile-main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #f0f0f0; /* Цвет фона */
-    margin-top: 80px;
-  }
-  
-  .profile-user-card {
-    width: 100%;
-    max-width: 500px; /* Максимальная ширина карточки */
-    margin-bottom: 20px; /* Отступ снизу */
-    background-color: #ffffff; /* Цвет фона карточки */
-    border-radius: 10px; /* Скругление углов карточки */
-    padding: 20px; /* Отступ внутри карточки */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень карточки */
-  }
-  
-  .profile-avatar-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .profile-avatar-img {
-    width: 150px; /* Ширина изображения */
-    height: 150px; /* Высота изображения */
-    border-radius: 50%; /* Круглая форма */
-    object-fit: cover; /* Сохранение пропорций */
-    border: 2px solid rgba(79, 156, 232, 0.7019607843); /* Рамка вокруг аватара */
-    margin-bottom: 10px; /* Отступ снизу */
-  }
-  
-  .profile-upload-btn {
-    margin-top: 10px; /* Отступ сверху */
-    padding: 8px 12px; /* Отступ внутри кнопки */
-    border: none; /* Без рамки */
-    border-radius: 5px; /* Скругление углов */
-    background-color: rgba(79, 156, 232, 0.7019607843); /* Цвет фона кнопки */
-    color: white; /* Цвет текста */
-    cursor: pointer; /* Указатель для курсора */
-    transition: background-color 0.3s; /* Плавный переход цвета */
-  }
-  
-  .profile-upload-btn:hover {
-    background-color: rgba(79, 156, 232, 0.95); /* Цвет фона при наведении */
-  }
-  
-  .profile-detail-text {
-    margin: 10px 0; /* Отступ сверху и снизу */
-  }
-  
-  .profile-edit-input {
-    width: 95%; /* Полная ширина поля */
-    padding: 8px; /* Отступ внутри поля */
-    margin-top: 5px; /* Отступ сверху */
-    border: 1px solid #ccc; /* Рамка поля */
-    border-radius: 5px; /* Скругление углов */
-    font-size: 16px; /* Размер шрифта */
-    transition: border-color 0.3s; /* Плавный переход цвета рамки */
-  }
-  
-  .profile-edit-input:focus {
-    border-color: #ff69b4; /* Цвет рамки при фокусе */
-    outline: none; /* Без обводки */
-  }
-  
-  .profile-edit-btn, .profile-save-btn, .profile-cancel-btn {
-    padding: 10px 15px; /* Отступ внутри кнопки */
-    border: none; /* Без рамки */
-    border-radius: 5px; /* Скругление углов */
-    background-color: rgba(79, 156, 232, 0.7019607843); /* Цвет фона кнопки */
-    color: white; /* Цвет текста */
-    cursor: pointer; /* Указатель для курсора */
-    margin: 5px; /* Отступ вокруг кнопок */
-    transition: background-color 0.3s; /* Плавный переход цвета */
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  margin-top: 80px;
+}
 
-  .profile-change-password-btn {
-    right: auto;
-    padding: 10px 15px; /* Отступ внутри кнопки */
-    border: none; /* Без рамки */
-    border-radius: 5px; /* Скругление углов */
-    background-color: rgba(79, 156, 232, 0.7019607843); /* Цвет фона кнопки */
-    color: white; /* Цвет текста */
-    cursor: pointer; /* Указатель для курсора */
-    margin: 5px; /* Отступ вокруг кнопок */
-    transition: background-color 0.3s; /* Плавный переход цвета */
-  }
-  
-  .profile-edit-btn:hover, .profile-save-btn:hover, .profile-cancel-btn:hover, .profile-change-password-btn:hover {
-    background-color: rgba(79, 156, 232, 0.95); /* Цвет фона при наведении */
-  }
-  
-  .profile-error-msg {
-    color: red; /* Цвет сообщения об ошибке */
-    margin-top: 10px; /* Отступ сверху */
-    text-align: center; /* Центрирование текста */
-  }
-  body, html {
-    background-color: #f0f0f0; /* Задайте нужный цвет фона */
-  }
+.profile-user-card {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(79, 156, 232, 0.7019607843);
+  margin-bottom: 10px;
+}
+
+.profile-upload-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(79, 156, 232, 0.7019607843);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-upload-btn:hover {
+  background-color: rgba(79, 156, 232, 0.95);
+}
+
+.profile-detail-text {
+  margin: 10px 0;
+}
+
+.profile-edit-input {
+  width: 95%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.profile-edit-input:focus {
+  border-color: #ff69b4;
+  outline: none;
+}
+
+.profile-edit-btn,
+.profile-save-btn,
+.profile-cancel-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(79, 156, 232, 0.7019607843);
+  color: white;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s;
+}
+
+.profile-change-password-btn {
+  right: auto;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(79, 156, 232, 0.7019607843);
+  color: white;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s;
+}
+
+.profile-edit-btn:hover,
+.profile-save-btn:hover,
+.profile-cancel-btn:hover,
+.profile-change-password-btn:hover {
+  background-color: rgba(79, 156, 232, 0.95);
+}
+
+.profile-error-msg {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+body,
+html {
+  background-color: #f0f0f0;
+}

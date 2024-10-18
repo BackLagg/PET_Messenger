@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Spinner.css'; // Импортируем CSS для лоадера
+import './Spinner.css';
 
 const VerifyPage = () => {
   const [status, setStatus] = useState(null);
