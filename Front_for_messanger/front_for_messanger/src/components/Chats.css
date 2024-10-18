@@ -1,43 +1,43 @@
-.chats-main-container{
+.chats-main-container {
   background-color: #f0f0f0;
 }
+
 .chats-container {
-    padding: 20px;
-    background-color: white; /* Цвет фона для контейнера */
-    border-radius: 8px; /* Закругление углов */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
-    width: 60%; /* Ограничение ширины для контейнера */
-    margin: 0 auto; /* Центрируем контейнер */
-    margin-top: 100px;
-  }
-  
-  .chats-list {
-    display: flex;
-    flex-direction: column; /* Устанавливаем элементы в один столбик */
-    gap: 10px; /* Промежуток между элементами */
-  }
-  
-  .chat-item {
-    background-color: white; /* Цвет фона для элемента чата */
-    border: 1px solid #ddd; /* Цвет рамки */
-    border-radius: 8px; /* Закругление углов */
-    padding: 15px; /* Внутренние отступы */
-    text-decoration: none; /* Убираем подчеркивание ссылок */
-    color: black; /* Цвет текста */
-    transition: box-shadow 0.3s; /* Плавный переход для тени */
-    width: 95%; /* Растягиваем элемент на всю ширину */
-  }
-  
-  .chat-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Тень при наведении */
-  }
-  
-  .chat-username {
-    font-weight: bold; /* Жирный текст для имени пользователя */
-    margin-bottom: 5px; /* Отступ снизу */
-  }
-  
-  .chat-last-message {
-    color: #777; /* Цвет текста для последнего сообщения */
-  }
-  
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.chats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-item {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  transition: box-shadow 0.3s;
+  width: 95%;
+}
+
+.chat-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.chat-username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.chat-last-message {
+  color: #777;
+}

@@ -21,7 +21,7 @@ const Chat = () => {
     const loadMoreRef = useRef(null);
 
     const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp']; // Список допустимых расширений изображений
-    const fileExtensions = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'txt', 'zip', 'rar'];
+    const fileExtensions = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'txt', 'zip', 'rar']; // Список допустимых расширений файлов
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -30,9 +30,9 @@ const Chat = () => {
             setFile(file); // Устанавливаем имя выбранного файла
         }
     };
-    
+
     useEffect(() => {
-    
+
         if (loading || !hasMoreMessages) {
             return; // Если больше сообщений нет, не инициализируем observer
         }
@@ -54,21 +54,21 @@ const Chat = () => {
         }, {
             threshold: 1.0, // Запускаем, когда элемент полностью виден
         });
-    
+
         // Сохраняем ссылку на текущий элемент
         const currentRef = loadMoreRef.current;
-    
+
         if (currentRef) {
             observer.observe(currentRef);
         }
-    
+
         return () => {
             if (currentRef) {
                 observer.unobserve(currentRef);
             }
         };
-    }, [loadMoreRef, page,hasMoreMessages,loading]);
-     // Обработчик вставки из буфера обмена
+    }, [loadMoreRef, page, hasMoreMessages, loading]);
+    // Обработчик вставки из буфера обмена
     const handlePaste = (event) => {
         const items = event.clipboardData.items;
         for (let i = 0; i < items.length; i++) {
@@ -148,7 +148,7 @@ const Chat = () => {
         ws.current.onmessage = (event) => {
             try {
                 const message = JSON.parse(event.data);
-                console.log("Полученное сообщение:", message); 
+                console.log("Полученное сообщение:", message);
                 if (message.info === "Все сообщения загружены") {
                     setHasMoreMessages(false); // Больше сообщений не будет
                     return;
@@ -194,10 +194,10 @@ const Chat = () => {
                 setSelectedFile(null)
             } else {
                 console.log("Отправка сообщения:", message);
-                ws.current.send(JSON.stringify(message)); 
+                ws.current.send(JSON.stringify(message));
             }
 
-            setMessageInput(''); 
+            setMessageInput('');
         } else {
             console.error("WebSocket не подключен");
         }
@@ -213,10 +213,10 @@ const Chat = () => {
         acc[date].push(msg);
         return acc;
     }, {});
-    const url='http://localhost:8080/'
+    const url = 'http://localhost:8080/'
     const downloadFile = (url, fileName) => {
         const link = document.createElement('a');
-        link.href = url+fileName; // Имя файла для сохранения
+        link.href = url + fileName; // Имя файла для сохранения
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link); // Удаляем элемент после скачивания
@@ -243,7 +243,7 @@ const Chat = () => {
             </div>
             {/* Контейнер для сообщений */}
             <div className="chat-messages">
-            <div ref={loadMoreRef} style={{ height: '1px' }} />
+                <div ref={loadMoreRef} style={{ height: '1px' }} />
                 {Object.entries(groupedMessages).map(([date, messages]) => (
                     <div key={date}>
                         <div className="message-date">{date}</div>
@@ -256,13 +256,13 @@ const Chat = () => {
                             return (
                                 <div key={index} className={`message-block ${isSentByUser ? 'sent' : 'received'}`}>
                                     <div className={`message-content ${isSentByUser ? 'sent' : 'received'}`}>
-                                        <strong>{msg.sender}:</strong> 
+                                        <strong>{msg.sender}:</strong>
                                         {msg.is_picture && imageExtensions.includes(fileExtension) ? (
                                             <img src={`http://localhost:8080/${msg.text}`} alt="file" style={{ maxWidth: '150px', borderRadius: '20px' }} />
                                         ) : msg.is_picture && fileExtensions.includes(fileExtension) ? (
-                                            <div onClick={() => downloadFile(url,msg.text)} className="file-download">
+                                            <div onClick={() => downloadFile(url, msg.text)} className="file-download">
                                                 <span>{getFileName(msg.text)}</span>
-                                                <img src={`http://localhost:8080/static/chat_files/file-icon.png`} alt="file icon" className="file-icon"/>
+                                                <img src={`http://localhost:8080/static/chat_files/file-icon.png`} alt="file icon" className="file-icon" />
                                             </div>
                                         ) : (
                                             msg.text
@@ -288,19 +288,19 @@ const Chat = () => {
             )}
             {/* Нижняя плашка для ввода сообщения */}
             <div className="chat-input">
-            <label htmlFor="file-upload" className="plusButton">
-                <input 
-                    id="file-upload" 
-                    type="file" 
-                    onChange={handleFileChange}
-                    style={{ display: 'none' }}
-                />
-                <svg className="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                    <g mask="url(#mask0_21_345)">
-                        <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                    </g>
-                </svg>
-            </label>
+                <label htmlFor="file-upload" className="plusButton">
+                    <input
+                        id="file-upload"
+                        type="file"
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                    />
+                    <svg className="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                        <g mask="url(#mask0_21_345)">
+                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                        </g>
+                    </svg>
+                </label>
                 <input
                     type="text"
                     value={messageInput}

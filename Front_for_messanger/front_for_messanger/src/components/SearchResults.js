@@ -7,7 +7,7 @@ const SearchResults = ({ users, onAddFriend }) => {
       {users.map((user) => (
         <div key={user.id} className="friend-card">
           <img src={user.pic_path ? `http://localhost:8080/${user.pic_path}` : 'http://localhost:8080/static/avatars/default-image.png'}
-                alt="avatar" className="avatar" />
+            alt="avatar" className="avatar" />
           <h3>{user.username}</h3>
           <div className="user-info">
             <p>{`${user.first_name} ${user.sec_name} ${user.last_name}`}</p>

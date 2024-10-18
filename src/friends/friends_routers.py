@@ -13,7 +13,7 @@ from src.auth.auth_cookie import fastapi_users
 current_user = fastapi_users.current_user()
 friend_router = APIRouter()
 
-# Route to search users by username
+# Роут поиска пользователей по username
 @friend_router.get("/search_users")
 async def search_users(username: str, session: AsyncSession = Depends(get_async_session)):
     query = select(User).options(joinedload(User.user_info)).where(User.username.ilike(f"%{username}%"))
@@ -23,7 +23,6 @@ async def search_users(username: str, session: AsyncSession = Depends(get_async_
     if not users:
         raise HTTPException(status_code=404, detail="No users found")
 
-    # Return users with their full names and usernames
     return [
         {
             "id": user.id,
@@ -36,7 +35,7 @@ async def search_users(username: str, session: AsyncSession = Depends(get_async_
         for user in users
     ]
 
-# Route to send a friend request
+# Роут отправки запроса в друзья
 
 @friend_router.post("/add_friend")
 async def add_friend(
@@ -47,7 +46,7 @@ async def add_friend(
     if user.id == friend_request.receiver_id:
         raise HTTPException(status_code=400, detail="You cannot send a friend request to yourself")
 
-    # Проверка, существует ли пользователь с таким receiver_id
+    # Проверка, существует ли пользователь
     user_exists_query = select(User).where(User.id == friend_request.receiver_id)
     user_exists_result = await session.execute(user_exists_query)
     receiver_user = user_exists_result.scalars().first()
@@ -85,13 +84,13 @@ async def add_friend(
 
 @friend_router.post("/accept_friend_request")
 async def accept_friend_request(
-    request_data: FriendRequestData,  # Используем Pydantic модель
+    request_data: FriendRequestData,
     session: AsyncSession = Depends(get_async_session),
     user: User = Depends(current_user)
 ):
     # Извлекаем необходимые данные из JSON
     friend_request_id = request_data.req_id
-    is_accepted = request_data.isAsepted  # Прямо получаем значение
+    is_accepted = request_data.isAsepted
 
     # Поиск запроса в друзья по его ID
     query = select(FriendRequest).where(FriendRequest.id == friend_request_id)
@@ -133,7 +132,7 @@ async def accept_friend_request(
 @friend_router.get("/show_my_friends")
 async def show_my_friends(
     user: User = Depends(current_user),  # Получаем авторизованного пользователя
-    session: AsyncSession = Depends(get_async_session)  # Асинхронная сессия для работы с БД
+    session: AsyncSession = Depends(get_async_session)
 ):
     # Находим запись о друзьях по owner_id
     query = select(Friends).where(Friends.owner_id == user.id)
@@ -178,7 +177,7 @@ async def show_my_friends(
 @friend_router.get("/my_friend_requests")
 async def my_friend_requests(
     user: User = Depends(current_user),  # Авторизованный пользователь
-    session: AsyncSession = Depends(get_async_session)  # Асинхронная сессия для работы с БД
+    session: AsyncSession = Depends(get_async_session)
 ):
     # Запросы от меня
     sent_requests_query = (

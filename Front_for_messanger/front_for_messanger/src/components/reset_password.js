@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useSearchParams,useNavigate } from "react-router-dom";
-import './ResetPassword.css'; // Подключаем CSS стили
+import { useSearchParams, useNavigate } from "react-router-dom";
+import './ResetPassword.css';
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -36,8 +36,8 @@ const ResetPassword = () => {
         setConfirmPassword("");
         setErrorMessage("");
         setTimeout(() => {
-            navigate("/");
-          }, 3000);
+          navigate("/");
+        }, 3000);
       } else {
         alert("Ошибка при сбросе пароля");
       }
@@ -50,7 +50,7 @@ const ResetPassword = () => {
     <div className="reset-container">
       <form className="reset-form" onSubmit={handleSubmit}>
         <h1>Сброс пароля</h1>
-        
+
         <label>
           Новый пароль:
           <input

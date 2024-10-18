@@ -32,7 +32,7 @@ conf = ConnectionConfig(
     MAIL_PASSWORD=MAIL_PASSWORD,
     MAIL_FROM=MAIL_USERNAME,
     MAIL_PORT=465,
-    MAIL_SERVER="smtp.yandex.ru",
+    MAIL_SERVER="smtp.yandex.ru", # Указывать желаемый smtp
     MAIL_STARTTLS=False,  # Используется для TLS
     MAIL_SSL_TLS=True,  # Используется для SSL/TLS
     USE_CREDENTIALS=True,
@@ -56,6 +56,8 @@ def send_reset_password_email(email: str, reset_link: str):
     )
 
     # Настройка FastMail и отправка сообщения
+    # Сама FastMail и end_message асинхронна, а Celery синхронен, могут быть ошибки,
+    # возможно есть пути получше решить данный конфликт
     fm = FastMail(conf)
     async_to_sync(fm.send_message)(message)
 def create_verification_token(email: str, verification_code: str) -> str:
@@ -70,7 +72,7 @@ def create_verification_token(email: str, verification_code: str) -> str:
 @shared_task
 def send_verification_email(email: str, verification_code: str):
     verification_token = create_verification_token(email, verification_code)
-    verification_link = f"http://localhost:3000/verify?token={verification_token}"  # Ссылка на клиентское приложение
+    verification_link = f"http://localhost:3000/verify?token={verification_token}"  # Ссылка на клиентское приложение (заменить при dev версии)
 
     message = MessageSchema(
         subject="Verify your account",
@@ -83,6 +85,7 @@ def send_verification_email(email: str, verification_code: str):
     fm = FastMail(conf)
     async_to_sync(fm.send_message)(message)
 
+# настройка переодических фоновых задач
 celery_app.conf.beat_schedule = {
     'delete-inactive-users-every-10-minutes': {
         'task': 'schedule_user_deletion',

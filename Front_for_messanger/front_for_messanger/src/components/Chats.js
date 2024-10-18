@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './Chats.css'; // Импортируем CSS файл для стилизации
-import './Spinner.css'; // Импортируем CSS для лоадера
+import './Chats.css';
+import './Spinner.css';
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -28,7 +28,7 @@ const Chats = () => {
     // Разделяем путь по символам __$__ и возвращаем последний элемент
     const parts = filePath.split('__$__');
     return parts[parts.length - 1];
-};
+  };
 
   if (loading) {
     return (

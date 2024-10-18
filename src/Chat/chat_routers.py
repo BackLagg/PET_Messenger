@@ -2,6 +2,7 @@ import base64
 import json
 import os
 import uuid
+import logging
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select, and_, desc
@@ -13,10 +14,12 @@ from src.Chat.models import Chat, Message
 from src.auth.auth_cookie import fastapi_users
 from fastapi import WebSocket, WebSocketDisconnect
 from typing import List, Dict
-import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+UPLOAD_DIRECTORY = "static/chat_pic"
+os.makedirs(UPLOAD_DIRECTORY, exist_ok=True)
 
 chat_router = APIRouter()
 current_user = fastapi_users.current_user()
@@ -52,8 +55,6 @@ async def create_chat(
 
     return {"chat_id": new_chat.id, "status": "Chat created"}
 
-UPLOAD_DIRECTORY = "static/chat_pic"
-os.makedirs(UPLOAD_DIRECTORY, exist_ok=True)
 class ConnectionManager:
     def __init__(self):
         self.active_connections: Dict[int, List[WebSocket]] = {}
@@ -89,18 +90,15 @@ async def chat_websocket(websocket: WebSocket,
     user = user_data.get("userId")
     await manager.connect(chat_id, websocket)
 
-    logger.info("Полученный токен: %s", [user])  # ПОТОМ УДАЛИТЬ
-
     # Проверка, является ли пользователь участником чата
     chat = await db.get(Chat, chat_id)
     if chat is None:
-        logger.error(f"Чат с ID {chat_id} не найден")
         await websocket.close()
         return
+    # для пагинации
     page = 1  # Начинаем с первой страницы
     page_size = 5
     if user not in chat.participants:
-        logger.error(f"Пользователь {user} не является участником чата {chat_id}")
         await websocket.close()
         return
 

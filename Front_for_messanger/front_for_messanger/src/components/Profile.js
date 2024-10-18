@@ -20,7 +20,7 @@ const Profile = ({ userInfo, setUserInfo }) => {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
-      const maxSize = 10 * 1024 * 1024; // 2MB
+      const maxSize = 10 * 1024 * 1024; // 10MB
       const validFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
       if (selectedFile.size > maxSize) {
@@ -72,12 +72,12 @@ const Profile = ({ userInfo, setUserInfo }) => {
 
       if (response.status === 200) {
         // Обновляем данные в локальном хранилище
-        const updatedUserInfo = { 
-          ...userInfo, 
-          first_name: firstName, 
-          sec_name: secName, 
-          last_name: lastName, 
-          pic_path: newPicPath 
+        const updatedUserInfo = {
+          ...userInfo,
+          first_name: firstName,
+          sec_name: secName,
+          last_name: lastName,
+          pic_path: newPicPath
         };
         sessionStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
         setUserInfo(updatedUserInfo);
@@ -149,7 +149,7 @@ const Profile = ({ userInfo, setUserInfo }) => {
           <p className="profile-username-display">{userInfo.username}</p>
         </div>
       </div>
-      
+
       <div className="profile-user-card">
         <div className="profile-details-section">
           <p className="profile-detail-text">
