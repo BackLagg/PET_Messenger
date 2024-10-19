@@ -14,10 +14,10 @@
 ## Описание проекта / Project Description
 
 ### English:
-PET Messenger is a web-based messenger application where users can register, log in, add friends, and chat in real-time. This project aims to showcase my skills in full-stack development using modern web technologies such as FastAPI, React, and WebSocket. The backend manages user authentication, chat functionality, and stores data in PostgreSQL, while the frontend offers a user-friendly interface.
+PET Messenger is a web-based messenger application where users can register, log in, add friends, and chat in real-time. This project aims to showcase my skills in development using modern web technologies such as FastAPI, React, and WebSocket. The backend manages user authentication, chat functionality, and stores data in PostgreSQL, while the frontend offers a user-friendly interface.
 
 ### Русский:
-PET Messenger — это веб-приложение для обмена сообщениями, в котором пользователи могут зарегистрироваться, войти в систему, добавлять друзей и общаться в реальном времени. Проект создан для демонстрации моих навыков в full-stack разработке с использованием современных технологий, таких как FastAPI, React и WebSocket. Бэкенд отвечает за аутентификацию пользователей, функциональность чатов и хранение данных в PostgreSQL, а фронтенд предоставляет удобный интерфейс.
+PET Messenger — это веб-приложение для обмена сообщениями, в котором пользователи могут зарегистрироваться, войти в систему, добавлять друзей и общаться в реальном времени. Проект создан для демонстрации моих навыков в разработке с использованием современных технологий, таких как FastAPI, React и WebSocket. Бэкенд отвечает за аутентификацию пользователей, функциональность чатов и хранение данных в PostgreSQL, а фронтенд предоставляет удобный интерфейс.
 
 [Оглавление / Table of Contents](#оглавление--table-of-Contents)
 
